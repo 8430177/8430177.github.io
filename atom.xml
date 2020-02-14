@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://8430177.github.io</id>
     <title>22k&apos;s Blog</title>
-    <updated>2020-02-14T05:27:03.963Z</updated>
+    <updated>2020-02-14T13:14:26.235Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://8430177.github.io"/>
     <link rel="self" href="https://8430177.github.io/atom.xml"/>
@@ -10,4 +10,45 @@
     <logo>https://8430177.github.io/images/avatar.png</logo>
     <icon>https://8430177.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, 22k&apos;s Blog</rights>
+    <entry>
+        <title type="html"><![CDATA[Mac下安装和配置Maven]]></title>
+        <id>https://8430177.github.io/post/mac-xia-an-zhuang-he-pei-zhi-maven/</id>
+        <link href="https://8430177.github.io/post/mac-xia-an-zhuang-he-pei-zhi-maven/">
+        </link>
+        <updated>2020-02-14T12:23:46.000Z</updated>
+        <content type="html"><![CDATA[<h3 id="1-下载maven">1、下载Maven</h3>
+<p>Maven官方下载页面:<a href="http://maven.apache.org/download.cgi">http://maven.apache.org/download.cgi</a></p>
+<p>下载.zip文件到电脑<br>
+<img src="https://8430177.github.io/post-images/1581685982626.png" alt="" loading="lazy"></p>
+<p>解压包到电脑，推荐解压到/Users/xxx/Documents/maven目录下</p>
+<figure data-type="image" tabindex="1"><img src="https://8430177.github.io/post-images/1581685964128.png" alt="" loading="lazy"></figure>
+<h2 id="2-配置环境变量">2、配置环境变量</h2>
+<p>打开终端terminel输入以下命令：</p>
+<p><code>vim ~/.bash_profile #打开.bash_profile文件，在次文件中添加设置环境变量的命令</code></p>
+<p><code>export M2_HOME=/Users/xxx/Documents/maven/apache-maven-3.6.3</code></p>
+<p><code>export PATH=$PATH:$M2_HOME/bin</code></p>
+<p>添加之后保存并退出，执行以下命令使配置生效：</p>
+<p><code>source ~/.bash_profile</code></p>
+<h6 id="检查是否配置正确">检查是否配置正确</h6>
+<p><code>mvn —version</code><br>
+<img src="https://8430177.github.io/post-images/1581685998463.png" alt="" loading="lazy"></p>
+<h2 id="3-配置国内源">3、配置国内源</h2>
+<p>进入解压后的maven文件中的conf/settings.xml文件并编辑</p>
+<ul>
+<li>在 <mirrors></mirrors>中间添加以下内容：</li>
+</ul>
+<pre><code class="language-xml">&lt;mirror&gt;
+    &lt;id&gt;nexus-aliyun&lt;/id&gt;
+    &lt;mirrorOf&gt;*&lt;/mirrorOf&gt;
+    &lt;name&gt;Nexus aliyun&lt;/name&gt;
+    &lt;url&gt;http://maven.aliyun.com/nexus/content/groups/public&lt;/url&gt;
+&lt;/mirror&gt;
+</code></pre>
+<ul>
+<li>修改在settings标签下的<localRepository></li>
+</ul>
+<pre><code class="language-xml">&lt;localRepository&gt;存放的路径&lt;/localRepository&gt;
+</code></pre>
+]]></content>
+    </entry>
 </feed>
