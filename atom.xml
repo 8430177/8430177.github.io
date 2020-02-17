@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://8430177.github.io</id>
     <title>22k&apos;s Blog</title>
-    <updated>2020-02-14T13:14:26.235Z</updated>
+    <updated>2020-02-17T03:12:19.137Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://8430177.github.io"/>
     <link rel="self" href="https://8430177.github.io/atom.xml"/>
@@ -10,6 +10,46 @@
     <logo>https://8430177.github.io/images/avatar.png</logo>
     <icon>https://8430177.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, 22k&apos;s Blog</rights>
+    <entry>
+        <title type="html"><![CDATA[Kali Linux更换源及更新软件、系统]]></title>
+        <id>https://8430177.github.io/post/kali-linux-geng-huan-yuan-ji-geng-xin-ruan-jian-xi-tong/</id>
+        <link href="https://8430177.github.io/post/kali-linux-geng-huan-yuan-ji-geng-xin-ruan-jian-xi-tong/">
+        </link>
+        <updated>2020-02-17T02:48:14.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="1-更换国内更新源">1、更换国内更新源</h2>
+<p>打开系统终端，输入以下命令:</p>
+<pre><code class="language-shell">vim /etc/apt/sources.list
+</code></pre>
+<p>然后输入i进入插入编辑模式，粘贴下面的国内源进去</p>
+<pre><code>#aliyun 阿里云
+deb http://mirrors.aliyun.com/kali kali-rolling main non-free contrib
+deb-src http://mirrors.aliyun.com/kali kali-rolling main non-free contrib
+# ustc 中科大
+deb http://mirrors.ustc.edu.cn/kali kali-rolling main non-free contrib
+deb-src http://mirrors.ustc.edu.cn/kali kali-rolling main non-free contrib
+#deb http://mirrors.ustc.edu.cn/kali-security kali-current/updates main contrib non-free
+#deb-src http://mirrors.ustc.edu.cn/kali-security kali-current/updates main contrib non-free
+# kali 官方源
+deb http://http.kali.org/kali kali-rolling main non-free contrib 
+deb-src http://http.kali.org/kali kali-rolling main non-free contrib 
+</code></pre>
+<p>粘贴成功之后按Esc退出键后输入:wq保存文件<br>
+<img src="https://8430177.github.io/post-images/1581908458046.png" alt="" loading="lazy"></p>
+<h2 id="2-更新软件-系统">2、更新软件、系统</h2>
+<pre><code class="language-shell">apt-get update #更新软件所有列表
+</code></pre>
+<pre><code class="language-shell">apt-get upgrade #更新软件
+</code></pre>
+<pre><code class="language-shell">apt-get dist-upgrade #更新系统版本
+</code></pre>
+<p>或者可以一起执行</p>
+<pre><code class="language-shell">apt-get update &amp; apt-get upgrade &amp; apt-get dist-upgrade #将上面三条命令一块执行
+</code></pre>
+<h2 id="3-清理">3、清理</h2>
+<pre><code class="language-shell">apt-get clean #清理安装包
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Mac下安装和配置Maven]]></title>
         <id>https://8430177.github.io/post/mac-xia-an-zhuang-he-pei-zhi-maven/</id>

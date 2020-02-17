@@ -2,25 +2,23 @@
   <head>
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>关于 | 22k&#39;s Blog</title>
+<title>Kali Linux更换源及更新软件、系统 | 22k&#39;s Blog</title>
 <link rel="shortcut icon" href="https://8430177.github.io/favicon.ico?v=1581909133980">
 <link href="https://cdn.remixicon.com/releases/v2.1.0/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://8430177.github.io/styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="关于 | 22k&#39;s Blog - Atom Feed" href="https://8430177.github.io/atom.xml">
+<link rel="alternate" type="application/atom+xml" title="Kali Linux更换源及更新软件、系统 | 22k&#39;s Blog - Atom Feed" href="https://8430177.github.io/atom.xml">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
 
 
-    <meta name="description" content="
-欢迎来到我的小站呀，很高兴遇见你！🤝
+    <meta name="description" content="1、更换国内更新源
+打开系统终端，输入以下命令:
+vim /etc/apt/sources.list
 
-🏠 关于本站
-👨‍💻 博主是谁
-⛹ 兴趣爱好
-📬 联系我呀
-8430177@qq.com
-..." />
-    <meta name="keywords" content="" />
+然后输入i进入插入编辑模式，粘贴下面的国内源进去
+#aliyun 阿里云
+deb http://mirrors.aliyun.com/k..." />
+    <meta name="keywords" content="Kali_Linux" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
     <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
   </head>
@@ -86,38 +84,65 @@
         <div class="post-detail">
           <article class="post">
             <h2 class="post-title">
-              关于
+              Kali Linux更换源及更新软件、系统
             </h2>
             <div class="post-info">
               <span>
-                2019-01-25
+                2020-02-17
               </span>
               <span>
-                1 min read
+                2 min read
               </span>
+              
+                <a href="https://8430177.github.io/tag/Fao-pfu9T/" class="post-tag">
+                  # Kali_Linux
+                </a>
               
             </div>
             
             <div class="post-content-wrapper">
               <div class="post-content">
-                <blockquote>
-<p>欢迎来到我的小站呀，很高兴遇见你！🤝</p>
-</blockquote>
-<h2 id="关于本站">🏠 关于本站</h2>
-<h2 id="博主是谁">👨‍💻 博主是谁</h2>
-<h2 id="兴趣爱好">⛹ 兴趣爱好</h2>
-<h2 id="联系我呀">📬 联系我呀</h2>
-<p>8430177@qq.com</p>
+                <h2 id="1-更换国内更新源">1、更换国内更新源</h2>
+<p>打开系统终端，输入以下命令:</p>
+<pre><code class="language-shell">vim /etc/apt/sources.list
+</code></pre>
+<p>然后输入i进入插入编辑模式，粘贴下面的国内源进去</p>
+<pre><code>#aliyun 阿里云
+deb http://mirrors.aliyun.com/kali kali-rolling main non-free contrib
+deb-src http://mirrors.aliyun.com/kali kali-rolling main non-free contrib
+# ustc 中科大
+deb http://mirrors.ustc.edu.cn/kali kali-rolling main non-free contrib
+deb-src http://mirrors.ustc.edu.cn/kali kali-rolling main non-free contrib
+#deb http://mirrors.ustc.edu.cn/kali-security kali-current/updates main contrib non-free
+#deb-src http://mirrors.ustc.edu.cn/kali-security kali-current/updates main contrib non-free
+# kali 官方源
+deb http://http.kali.org/kali kali-rolling main non-free contrib 
+deb-src http://http.kali.org/kali kali-rolling main non-free contrib 
+</code></pre>
+<p>粘贴成功之后按Esc退出键后输入:wq保存文件<br>
+<img src="https://8430177.github.io/post-images/1581908458046.png" alt="" loading="lazy"></p>
+<h2 id="2-更新软件-系统">2、更新软件、系统</h2>
+<pre><code class="language-shell">apt-get update #更新软件所有列表
+</code></pre>
+<pre><code class="language-shell">apt-get upgrade #更新软件
+</code></pre>
+<pre><code class="language-shell">apt-get dist-upgrade #更新系统版本
+</code></pre>
+<p>或者可以一起执行</p>
+<pre><code class="language-shell">apt-get update &amp; apt-get upgrade &amp; apt-get dist-upgrade #将上面三条命令一块执行
+</code></pre>
+<h2 id="3-清理">3、清理</h2>
+<pre><code class="language-shell">apt-get clean #清理安装包
+</code></pre>
 
               </div>
               <div class="toc-container">
                 <ul class="markdownIt-TOC">
 <li>
 <ul>
-<li><a href="#%E5%85%B3%E4%BA%8E%E6%9C%AC%E7%AB%99">🏠 关于本站</a></li>
-<li><a href="#%E5%8D%9A%E4%B8%BB%E6%98%AF%E8%B0%81">👨‍💻 博主是谁</a></li>
-<li><a href="#%E5%85%B4%E8%B6%A3%E7%88%B1%E5%A5%BD">⛹ 兴趣爱好</a></li>
-<li><a href="#%E8%81%94%E7%B3%BB%E6%88%91%E5%91%80">📬 联系我呀</a></li>
+<li><a href="#1-%E6%9B%B4%E6%8D%A2%E5%9B%BD%E5%86%85%E6%9B%B4%E6%96%B0%E6%BA%90">1、更换国内更新源</a></li>
+<li><a href="#2-%E6%9B%B4%E6%96%B0%E8%BD%AF%E4%BB%B6-%E7%B3%BB%E7%BB%9F">2、更新软件、系统</a></li>
+<li><a href="#3-%E6%B8%85%E7%90%86">3、清理</a></li>
 </ul>
 </li>
 </ul>
@@ -127,6 +152,15 @@
           </article>
         </div>
 
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://8430177.github.io/post/mac-xia-an-zhuang-he-pei-zhi-maven/">
+              <h3 class="post-title">
+                Mac下安装和配置Maven
+              </h3>
+            </a>
+          </div>
         
 
         
