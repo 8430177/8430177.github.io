@@ -2,7 +2,7 @@
   <head>
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>我的观影 | 22k&#39;s Blog</title>
+<title>国内加速github访问速度 | 22k&#39;s Blog</title>
 <meta name="description" content="温故而知新" />
 <link rel="shortcut icon" href="https://8430177.github.io/favicon.ico">
 <link rel="stylesheet" href="https://8430177.github.io/styles/main.css">
@@ -13,14 +13,13 @@
 <script src="https://8430177.github.io/media/js/pace.min.js"></script>
 <script src="https://8430177.github.io/media/js/view-image.min.js"></script>
 <script src="https://8430177.github.io/media/js/functions.js"></script>
-    <meta name="referrer" content="never">
-    <link rel="stylesheet" href="https://8430177.github.io/media/js/Bmdb.min.css">
-    <script type='text/javascript' src='https://8430177.github.io/media/js/Bmdb.min.js'></script>
+    <script src="https://8430177.github.io/media/js/waterfall.min.js"></script>
+    <script src="https://8430177.github.io/media/js/prism.min.js"></script>
+    
+      <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/leancloud-storage/dist/av-min.js"></script>
+    
   </head>
   <body>
-    <!-- start: #wrapper -->
-    <div class="wrapper">
-      
             <header id="header" class="grid-container">
         <!-- start: .menu-wrapper -->
         <div class="menu-mobile"> 
@@ -75,14 +74,152 @@
         <div class="clear"></div>
       </header>
 
-      <main id="friends" class="main fullcover no-sidebar content">
-        <div class="grid-container module-wrapper enable-masonry aos-init aos-animate" data-aos="fade-up">
+      <main id="single" class="main grid-container fullcover no-sidebar aos-init aos-animate" data-aos="fade">
+
+        <div class="center content">
+          <div class="featured-image cover" style="background-image: url('https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1581956564712&amp;di=04fc20b8d42b87822ab6b21847a6bf02&amp;imgtype=0&amp;src=http%3A%2F%2Fpic4.zhimg.com%2Fv2-24b62548b48af3e019a3c82df54758a8_r.jpg');">
+            <div class="meta top"> 
+              <time class="meta-info" style="float:left;" datetime="2020-02-17"><i class="fa fa-calendar"></i><span class="lately">9 分钟前</span></time>
+               
+               
+               <span id="/post/guo-nei-jia-su-github-fang-wen-su-du/" class="leancloud_visitors views-counter meta-info">
+                <i class="fa fa-leancloud"></i><span class="leancloud-visitors-count" style="vertical-align: middle;">0</span>
+               </span>
+               
+            </div>
+            <div class="info">
+              <div class="tags ">
+                
+                      <a href="https://8430177.github.io/tag/H0RW9kfrf/" class="ctag ctag-0 ctag-H0RW9kfrf" aria-label="">github</a>
+                    
+              </div>
+              <h1 class="title ularge white bold">国内加速github访问速度</h1>
+            </div>
+          </div>
+        </div>  
+
         <div class="epcl-page-wrapper">
-          <div class="section-content" style="margin-top:3em;"></div>
-        </div>
-        </div>
+          <div class="left-content grid-70 np-mobile">
+            <article class="main-article post">
+              <section class="post-content">
+                <div class="text">
+                  <h2 id="1-编辑本地hosts文件">1、编辑本地hosts文件</h2>
+<p>这里以Mac系统为例子:</p>
+<pre><code class="language-shell">sudo vim /etc/hosts
+</code></pre>
+<p>输入i插入修改，在文件最后面加上以下的代码</p>
+<pre><code>192.30.253.112 github.com
+192.30.253.119 gist.github.com
+151.101.100.133 assets-cdn.github.com
+151.101.100.133 raw.githubusercontent.com
+151.101.100.133 gist.githubusercontent.com
+151.101.100.133 cloud.githubusercontent.com
+151.101.100.133 camo.githubusercontent.com
+151.101.100.133 avatars0.githubusercontent.com
+151.101.100.133 avatars1.githubusercontent.com
+151.101.100.133 avatars2.githubusercontent.com
+151.101.100.133 avatars3.githubusercontent.com
+151.101.100.133 avatars4.githubusercontent.com
+151.101.100.133 avatars5.githubusercontent.com
+151.101.100.133 avatars6.githubusercontent.com
+151.101.100.133 avatars7.githubusercontent.com
+151.101.100.133 avatars8.githubusercontent.com
+192.30.253.112      github.com
+192.30.253.119      gist.github.com
+151.101.184.133     assets-cdn.github.com
+151.101.184.133     raw.githubusercontent.com
+151.101.184.133     gist.githubusercontent.com
+151.101.184.133     cloud.githubusercontent.com
+151.101.184.133     camo.githubusercontent.com
+151.101.184.133     avatars0.githubusercontent.com
+151.101.184.133     avatars1.githubusercontent.com
+151.101.184.133     avatars2.githubusercontent.com
+151.101.184.133     avatars3.githubusercontent.com
+151.101.184.133     avatars4.githubusercontent.com
+151.101.184.133     avatars5.githubusercontent.com
+151.101.184.133     avatars6.githubusercontent.com
+151.101.184.133     avatars7.githubusercontent.com
+151.101.184.133     avatars8.githubusercontent.com
+</code></pre>
+<p>最后在按下Esc键，输入:wq保存即可!!!</p>
+<h2 id="2-window">2、Window</h2>
+<p>在 Windows 系统中，hosts文件的位置为：C:\Windows\System32\drivers\etc<br>
+注意,Windows也是同样需要管理员权限。</p>
+<h2 id="3-测试">3、测试</h2>
+<p>打开浏览器访问github.com测试下，看看是不是快了很多!!!</p>
+
+                </div>
+                <div class="clear"></div>
+              </section>
+            </article>
+            <div class="clear"></div>
+
+            <section class="related section">
+              
+              
+              <article class="next grid-50 tablet-grid-50 grid-parent">
+                <div class="thumb cover lazy loaded" style="background-image: url('https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1581942348693&amp;di=6a9f7061035dd839185ac2ab6e640d5e&amp;imgtype=0&amp;src=http%3A%2F%2F5b0988e595225.cdn.sohucs.com%2Fimages%2F20181202%2F69a8d2ebc4724bdcab4483415d066c15.jpeg');"></div>
+                 <a href="https://8430177.github.io/post/kali-linux-geng-huan-yuan-ji-geng-xin-ruan-jian-xi-tong/" class="full-link"></a>
+                 <div class="info">
+                  <time datetime="2020-02-17">2020-02-17</time>
+                  <h4 class="title white no-margin">Kali Linux更换源及更新软件、系统</h4>
+                </div>
+                 <span class="epcl-button red">
+                  <img src="https://8430177.github.io/media/images/right-arrow.svg" width="15" alt="Left Arrow">
+                </span>
+                <div class="overlay"></div>
+              </article>
+              
+
+                <div class="clear"></div>
+            </section>
+
+              <div class="clear"></div>
+
+              <div id="comments" class="bg-white hosted ">
+
+              
+                <script type="text/javascript" src="https://cdn.staticfile.org/valine/1.3.10/Valine.Pure.min.js"></script>
+
+<script>
+    var valine = new Valine();
+    valine.init({
+        el: '#comments',
+        appId: 'BcBc1ivdTITKJdIs9e69DEiu-gzGzoHsz' ,
+        appKey: 'maOAepU1AqVqceXsisu73OBH',
+        pageSize: 30,
+        placeholder: '既然来了，那就留个痕迹吧~',
+        visitor: false // 阅读量统计
+    })
+
+jQuery(document).ready(function($){
+    $('.vemoji-btn').text('😀');
+    $("#comments").on('click', 'span.vat',function(){
+        $(this).parent('div.vmeta').next("div.vcontent").after($("div.vwrap"));
+        $('textarea#veditor').focus();
+    })
+    if(window.location.hash){
+        var checkExist = setInterval(function() {
+            if ($(window.location.hash).length) {
+                $('html, body').animate({scrollTop: $(window.location.hash).offset().top-200}, 600);
+                clearInterval(checkExist);
+            }
+        }, 100);
+    }
+})
+</script>
+
+                <div class="clear"></div>
+              
+                <div class="clear"></div>
+              </div>
+
+              <div class="clear"></div>
+            </div>
+          </div>
       </main>
-        <footer id="footer" class="grid-container">
+
+          <footer id="footer" class="grid-container">
         <div class="widgets row gradient-effect">
             <div class="default-sidebar border-effect">
               <div class="grid-33 tablet-grid-50 mobile-grid-100">
@@ -201,15 +338,50 @@
         </a>
     </footer>
     <div class="clear"></div>
-    <script>
-    new Bmdb({
-      type: 'movies',
-      selector: '.section-content',
-      secret: '0bba46738324c778ad2da662837c14d2c1e5bceb22e3729febc9fd3677bdcea5',
-      noMoreText: '没有更多数据了',
-      limit: 30
-    })
-    </script>
+
+      <script type="text/javascript">
+       jQuery(document).ready(function($){
+          $("photos img").each(function(){
+              var _a = $("<a></a>").attr("href",this.src);
+              $(this).wrap("<div class='photo'></div>").wrap(_a);
+          })
+          $("figure img").each(function(){
+              var _b = $("<a></a>").attr("href",this.src);
+              $(this).wrap(_b);
+          })
+          isImgLoad(function(){
+            var photos = document.querySelector('photos');
+            if(photos){
+              waterfall(photos);
+            }
+            $(window).resize(function() {
+             if(photos){
+                  waterfall(photos);
+            }
+          });
+        });
+        var t_img;
+        var isLoad = true;
+        function isImgLoad(callback){
+          $('photos img').each(function(){
+            if(this.height === 0){
+              isLoad = false;
+              return false;
+            }
+          });
+          if(isLoad){
+            clearTimeout(t_img);
+            callback();
+          }else{
+            isLoad = true;
+            t_img = setTimeout(function(){
+              isImgLoad(callback);
+            },500);
+          }
+        }
+      });
+      </script>
+
     </div>
     <!-- end: #wrapper -->
   </body>

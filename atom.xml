@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://8430177.github.io</id>
     <title>22k&apos;s Blog</title>
-    <updated>2020-02-17T13:25:36.395Z</updated>
+    <updated>2020-02-17T13:35:35.951Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://8430177.github.io"/>
     <link rel="self" href="https://8430177.github.io/atom.xml"/>
@@ -10,6 +10,58 @@
     <logo>https://8430177.github.io/images/avatar.png</logo>
     <icon>https://8430177.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, 22k&apos;s Blog</rights>
+    <entry>
+        <title type="html"><![CDATA[国内加速github访问速度]]></title>
+        <id>https://8430177.github.io/post/guo-nei-jia-su-github-fang-wen-su-du/</id>
+        <link href="https://8430177.github.io/post/guo-nei-jia-su-github-fang-wen-su-du/">
+        </link>
+        <updated>2020-02-17T13:26:16.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="1-编辑本地hosts文件">1、编辑本地hosts文件</h2>
+<p>这里以Mac系统为例子:</p>
+<pre><code class="language-shell">sudo vim /etc/hosts
+</code></pre>
+<p>输入i插入修改，在文件最后面加上以下的代码</p>
+<pre><code>192.30.253.112 github.com
+192.30.253.119 gist.github.com
+151.101.100.133 assets-cdn.github.com
+151.101.100.133 raw.githubusercontent.com
+151.101.100.133 gist.githubusercontent.com
+151.101.100.133 cloud.githubusercontent.com
+151.101.100.133 camo.githubusercontent.com
+151.101.100.133 avatars0.githubusercontent.com
+151.101.100.133 avatars1.githubusercontent.com
+151.101.100.133 avatars2.githubusercontent.com
+151.101.100.133 avatars3.githubusercontent.com
+151.101.100.133 avatars4.githubusercontent.com
+151.101.100.133 avatars5.githubusercontent.com
+151.101.100.133 avatars6.githubusercontent.com
+151.101.100.133 avatars7.githubusercontent.com
+151.101.100.133 avatars8.githubusercontent.com
+192.30.253.112      github.com
+192.30.253.119      gist.github.com
+151.101.184.133     assets-cdn.github.com
+151.101.184.133     raw.githubusercontent.com
+151.101.184.133     gist.githubusercontent.com
+151.101.184.133     cloud.githubusercontent.com
+151.101.184.133     camo.githubusercontent.com
+151.101.184.133     avatars0.githubusercontent.com
+151.101.184.133     avatars1.githubusercontent.com
+151.101.184.133     avatars2.githubusercontent.com
+151.101.184.133     avatars3.githubusercontent.com
+151.101.184.133     avatars4.githubusercontent.com
+151.101.184.133     avatars5.githubusercontent.com
+151.101.184.133     avatars6.githubusercontent.com
+151.101.184.133     avatars7.githubusercontent.com
+151.101.184.133     avatars8.githubusercontent.com
+</code></pre>
+<p>最后在按下Esc键，输入:wq保存即可!!!</p>
+<h2 id="2-window">2、Window</h2>
+<p>在 Windows 系统中，hosts文件的位置为：C:\Windows\System32\drivers\etc<br>
+注意,Windows也是同样需要管理员权限。</p>
+<h2 id="3-测试">3、测试</h2>
+<p>打开浏览器访问github.com测试下，看看是不是快了很多!!!</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Kali Linux更换源及更新软件、系统]]></title>
         <id>https://8430177.github.io/post/kali-linux-geng-huan-yuan-ji-geng-xin-ruan-jian-xi-tong/</id>
