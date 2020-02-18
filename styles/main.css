@@ -4456,7 +4456,7 @@ div.text .wp-block-table {
 }
 #header div.border {
   border-bottom: 2px solid rgba(255, 255, 255, 0.25);
-  margin-top: 40px;
+  margin-top: 10px;
 }
 @-webkit-keyframes headerPinnedSlideDown {
   0% {
