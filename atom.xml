@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://8430177.github.io</id>
     <title>22k&apos;s Blog</title>
-    <updated>2020-02-18T09:43:29.339Z</updated>
+    <updated>2020-02-22T14:12:50.296Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://8430177.github.io"/>
     <link rel="self" href="https://8430177.github.io/atom.xml"/>
@@ -10,6 +10,70 @@
     <logo>https://8430177.github.io/images/avatar.png</logo>
     <icon>https://8430177.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, 22k&apos;s Blog</rights>
+    <entry>
+        <title type="html"><![CDATA[selenium操作浏览器动态增删改页面元素(Java)]]></title>
+        <id>https://8430177.github.io/post/selenium-cao-zuo-liu-lan-qi-dong-tai-zeng-shan-gai-ye-mian-yuan-su-java/</id>
+        <link href="https://8430177.github.io/post/selenium-cao-zuo-liu-lan-qi-dong-tai-zeng-shan-gai-ye-mian-yuan-su-java/">
+        </link>
+        <updated>2020-02-22T05:02:29.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="1-简介">1、简介</h2>
+<p>用过selenium的或许知道,WebDriver中的WebElement只有一个GetAttribute方法，没有增加、删除、修改属性的方法，只有一个获取属性的方法.<br>
+那么我们要处理这个情况呢？<br>
+答案当时是借助JS代码来实现！！！</p>
+<h2 id="2-实现">2、实现</h2>
+<p>把增加、删除、更新属性封装为方法调用</p>
+<ul>
+<li>获取属性<br>
+WebElement中就有方法可以获取属性</li>
+</ul>
+<pre><code>getAttribute()
+</code></pre>
+<ul>
+<li>增加、修改属性（如修改就传修改的属性名）</li>
+</ul>
+<pre><code class="language-java">/**
+     * 在Element元素上新增加或修改属性
+     * @param element 传入要增加元素的WebElement
+     * @param AttributeName
+     * @param value
+     * @return
+ */
+    public boolean addAttribute(WebElement element,String AttributeName,String value)
+    {
+        ((JavascriptExecutor) driver).executeScript(&quot;arguments[0].setAttribute(arguments[1],arguments[2])&quot;, element, AttributeName, value);
+        return true;
+    }
+</code></pre>
+<ul>
+<li>删除属性</li>
+</ul>
+<pre><code class="language-java">/**
+     * 在Element元素上新增加属性
+     * @param element 传入要增加元素的WebElement
+     * @param AttributeName
+     * @param value
+     * @return
+ */
+    public boolean removeAttribute(WebElement element,String AttributeName,String value)
+    {
+        ((JavascriptExecutor) driver).executeScript(&quot;arguments[0].removeAttribute(arguments[1],arguments[2])&quot;, element, AttributeName, value);
+        return true;
+    }
+</code></pre>
+<h2 id="3-其他实用的js方法">3、其他实用的JS方法</h2>
+<ul>
+<li>当按钮不能点击的情况下，用js点击</li>
+</ul>
+<pre><code class="language-java">((JavascriptExecutor) driver).executeScript(&quot;arguments[0].click()&quot;, element);
+</code></pre>
+<ul>
+<li>刷新浏览器</li>
+</ul>
+<pre><code class="language-java">((JavascriptExecutor) driver).executeScript(&quot;history.go(0)&quot;);
+</code></pre>
+<p>注：代码中的driver是为WebDriver，因为我是封装在一个类文件中，所以是调用类中的driver。请根据自己需求是否要传一个WebDriver对象进去!!!</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[关于]]></title>
         <id>https://8430177.github.io/post/about/</id>

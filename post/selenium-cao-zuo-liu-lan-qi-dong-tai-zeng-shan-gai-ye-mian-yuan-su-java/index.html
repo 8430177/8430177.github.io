@@ -2,7 +2,7 @@
   <head>
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>maven | 22k&#39;s Blog</title>
+<title>selenium操作浏览器动态增删改页面元素(Java) | 22k&#39;s Blog</title>
 <meta name="description" content="To be better man" />
 <link rel="shortcut icon" href="https://8430177.github.io/favicon.ico">
 <link rel="stylesheet" href="https://8430177.github.io/styles/main.css">
@@ -13,11 +13,13 @@
 <script src="https://8430177.github.io/media/js/pace.min.js"></script>
 <script src="https://8430177.github.io/media/js/view-image.min.js"></script>
 <script src="https://8430177.github.io/media/js/functions.js"></script>
+    <script src="https://8430177.github.io/media/js/waterfall.min.js"></script>
+    <script src="https://8430177.github.io/media/js/prism.min.js"></script>
+    
+      <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/leancloud-storage/dist/av-min.js"></script>
+    
   </head>
   <body>
-    <!-- start: #wrapper -->
-    <div class="wrapper">
-      
             <header id="header" class="grid-container">
         <!-- start: .menu-wrapper -->
         <div class="menu-mobile"> 
@@ -66,45 +68,164 @@
         <div class="clear"></div>
       </header>
 
-      <main id="home" class="main fullcover no-sidebar content">
-        <div class="grid-container module-wrapper enable-masonry aos-init aos-animate" data-aos="fade-up">
-        <div class="epcl-page-wrapper">
-          <div class="left-content grid-70 np-mobile widget_epcl_related_articles">
-                
-            <!-- start: .articles -->
-            <div class="main-article post">
-  <h2 class="year"># maven</h2>
-    
-      <article class="item default grid-33 tablet-grid-50 np-mobile">
-        <a href="https://8430177.github.io/post/mac-xia-an-zhuang-he-pei-zhi-maven/" class="thumb hover-effect">
-          <span class="fullimage cover" style="display: block;background-image: url('http://img3.imgtn.bdimg.com/it/u=2373720633,2139891172&amp;fm=26&amp;gp=0.jpg');"></span>
-        </a>
-        <div class="info gradient-effect">
-          <time datetime="2020-02-14">2020-02-14</time>
-          <h4 class="title usmall">
-            <a href="https://8430177.github.io/post/mac-xia-an-zhuang-he-pei-zhi-maven/">Mac下安装和配置Maven</a>
-          </h4>
-        </div>
-      </article>
+      <main id="single" class="main grid-container fullcover no-sidebar aos-init aos-animate" data-aos="fade">
 
-    
-    <div class="clear"></div>
-</div>
-            <!-- end: .articles -->
-            
-                        <div class="epcl-pagination section">
-              <div class="nav">
-                
-                
-              </div>
+        <div class="center content">
+          <div class="featured-image cover" style="background-image: url('https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1582390794210&amp;di=b59c5e217416b218e95b3b7ca811b090&amp;imgtype=0&amp;src=http%3A%2F%2Fi1.hdslb.com%2Fbfs%2Farchive%2F3f5ef290cd55b5e7466edea41d5b14404c080675.jpg');">
+            <div class="meta top"> 
+              <time class="meta-info" style="float:left;" datetime="2020-02-22"><i class="fa fa-calendar"></i><span class="lately">9 小时前</span></time>
+               
+               
+               <span id="/post/selenium-cao-zuo-liu-lan-qi-dong-tai-zeng-shan-gai-ye-mian-yuan-su-java/" class="leancloud_visitors views-counter meta-info">
+                <i class="fa fa-leancloud"></i><span class="leancloud-visitors-count" style="vertical-align: middle;">0</span>
+               </span>
+               
             </div>
-            
+            <div class="info">
+              <div class="tags ">
+                
+                      <a href="https://8430177.github.io/tag/i2fZfc2c0/" class="ctag ctag-0 ctag-i2fZfc2c0" aria-label="">selenium</a>
+                    
+              </div>
+              <h1 class="title ularge white bold">selenium操作浏览器动态增删改页面元素(Java)</h1>
+            </div>
           </div>
+        </div>  
+
+        <div class="epcl-page-wrapper">
+          <div class="left-content grid-70 np-mobile">
+            <article class="main-article post">
+              <section class="post-content">
+                <div class="text">
+                  <h2 id="1-简介">1、简介</h2>
+<p>用过selenium的或许知道,WebDriver中的WebElement只有一个GetAttribute方法，没有增加、删除、修改属性的方法，只有一个获取属性的方法.<br>
+那么我们要处理这个情况呢？<br>
+答案当时是借助JS代码来实现！！！</p>
+<h2 id="2-实现">2、实现</h2>
+<p>把增加、删除、更新属性封装为方法调用</p>
+<ul>
+<li>获取属性<br>
+WebElement中就有方法可以获取属性</li>
+</ul>
+<pre><code>getAttribute()
+</code></pre>
+<ul>
+<li>增加、修改属性（如修改就传修改的属性名）</li>
+</ul>
+<pre><code class="language-java">/**
+     * 在Element元素上新增加或修改属性
+     * @param element 传入要增加元素的WebElement
+     * @param AttributeName
+     * @param value
+     * @return
+ */
+    public boolean addAttribute(WebElement element,String AttributeName,String value)
+    {
+        ((JavascriptExecutor) driver).executeScript(&quot;arguments[0].setAttribute(arguments[1],arguments[2])&quot;, element, AttributeName, value);
+        return true;
+    }
+</code></pre>
+<ul>
+<li>删除属性</li>
+</ul>
+<pre><code class="language-java">/**
+     * 在Element元素上新增加属性
+     * @param element 传入要增加元素的WebElement
+     * @param AttributeName
+     * @param value
+     * @return
+ */
+    public boolean removeAttribute(WebElement element,String AttributeName,String value)
+    {
+        ((JavascriptExecutor) driver).executeScript(&quot;arguments[0].removeAttribute(arguments[1],arguments[2])&quot;, element, AttributeName, value);
+        return true;
+    }
+</code></pre>
+<h2 id="3-其他实用的js方法">3、其他实用的JS方法</h2>
+<ul>
+<li>当按钮不能点击的情况下，用js点击</li>
+</ul>
+<pre><code class="language-java">((JavascriptExecutor) driver).executeScript(&quot;arguments[0].click()&quot;, element);
+</code></pre>
+<ul>
+<li>刷新浏览器</li>
+</ul>
+<pre><code class="language-java">((JavascriptExecutor) driver).executeScript(&quot;history.go(0)&quot;);
+</code></pre>
+<p>注：代码中的driver是为WebDriver，因为我是封装在一个类文件中，所以是调用类中的driver。请根据自己需求是否要传一个WebDriver对象进去!!!</p>
+
+                </div>
+                <div class="clear"></div>
+              </section>
+            </article>
+            <div class="clear"></div>
+
+            <section class="related section">
+              
+              
+              <article class="next grid-50 tablet-grid-50 grid-parent">
+                <div class="thumb cover lazy loaded" style="background-image: url('https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1582007451290&amp;di=91cc35bc54b3286959d7899412df5f66&amp;imgtype=0&amp;src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F01ea175aed34d9a801219b7fa547e2.jpg%403000w_1l_2o_100sh.jpg');"></div>
+                 <a href="https://8430177.github.io/post/about/" class="full-link"></a>
+                 <div class="info">
+                  <time datetime="2020-02-18">2020-02-18</time>
+                  <h4 class="title white no-margin">关于</h4>
+                </div>
+                 <span class="epcl-button red">
+                  <img src="https://8430177.github.io/media/images/right-arrow.svg" width="15" alt="Left Arrow">
+                </span>
+                <div class="overlay"></div>
+              </article>
+              
+
+                <div class="clear"></div>
+            </section>
+
+              <div class="clear"></div>
+
+              <div id="comments" class="bg-white hosted ">
+
+              
+                <script type="text/javascript" src="https://cdn.staticfile.org/valine/1.3.10/Valine.Pure.min.js"></script>
+
+<script>
+    var valine = new Valine();
+    valine.init({
+        el: '#comments',
+        appId: 'BcBc1ivdTITKJdIs9e69DEiu-gzGzoHsz' ,
+        appKey: 'maOAepU1AqVqceXsisu73OBH',
+        pageSize: 30,
+        placeholder: '既然来了，那就留个痕迹吧~',
+        visitor: false // 阅读量统计
+    })
+
+jQuery(document).ready(function($){
+    $('.vemoji-btn').text('😀');
+    $("#comments").on('click', 'span.vat',function(){
+        $(this).parent('div.vmeta').next("div.vcontent").after($("div.vwrap"));
+        $('textarea#veditor').focus();
+    })
+    if(window.location.hash){
+        var checkExist = setInterval(function() {
+            if ($(window.location.hash).length) {
+                $('html, body').animate({scrollTop: $(window.location.hash).offset().top-200}, 600);
+                clearInterval(checkExist);
+            }
+        }, 100);
+    }
+})
+</script>
+
+                <div class="clear"></div>
+              
+                <div class="clear"></div>
+              </div>
+
+              <div class="clear"></div>
+            </div>
           </div>
-        </div>
       </main>
 
-        <footer id="footer" class="grid-container">
+          <footer id="footer" class="grid-container">
         <div class="widgets row gradient-effect">
             <div class="default-sidebar border-effect">
               <div class="grid-33 tablet-grid-50 mobile-grid-100">
@@ -231,6 +352,50 @@
         </a>
     </footer>
     <div class="clear"></div>
+
+      <script type="text/javascript">
+       jQuery(document).ready(function($){
+          $("photos img").each(function(){
+              var _a = $("<a></a>").attr("href",this.src);
+              $(this).wrap("<div class='photo'></div>").wrap(_a);
+          })
+          $("figure img").each(function(){
+              var _b = $("<a></a>").attr("href",this.src);
+              $(this).wrap(_b);
+          })
+          isImgLoad(function(){
+            var photos = document.querySelector('photos');
+            if(photos){
+              waterfall(photos);
+            }
+            $(window).resize(function() {
+             if(photos){
+                  waterfall(photos);
+            }
+          });
+        });
+        var t_img;
+        var isLoad = true;
+        function isImgLoad(callback){
+          $('photos img').each(function(){
+            if(this.height === 0){
+              isLoad = false;
+              return false;
+            }
+          });
+          if(isLoad){
+            clearTimeout(t_img);
+            callback();
+          }else{
+            isLoad = true;
+            t_img = setTimeout(function(){
+              isImgLoad(callback);
+            },500);
+          }
+        }
+      });
+      </script>
+
     </div>
     <!-- end: #wrapper -->
   </body>
