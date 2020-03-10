@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://8430177.github.io</id>
     <title>22k&apos;s Blog</title>
-    <updated>2020-02-26T03:44:57.493Z</updated>
+    <updated>2020-03-10T06:56:41.956Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://8430177.github.io"/>
     <link rel="self" href="https://8430177.github.io/atom.xml"/>
@@ -10,6 +10,51 @@
     <logo>https://8430177.github.io/images/avatar.png</logo>
     <icon>https://8430177.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, 22k&apos;s Blog</rights>
+    <entry>
+        <title type="html"><![CDATA[为git配置代理，加速git clone速度(Mac)]]></title>
+        <id>https://8430177.github.io/post/wei-git-pei-zhi-dai-li-jia-su-git-clone-su-du/</id>
+        <link href="https://8430177.github.io/post/wei-git-pei-zhi-dai-li-jia-su-git-clone-su-du/">
+        </link>
+        <updated>2020-03-10T03:30:01.000Z</updated>
+        <content type="html"><![CDATA[<h3 id="1-起因">1. 起因</h3>
+<p>最近不知道怎么回事，用这移动的宽带感觉git clone的速度超级的慢。接着就用<strong>Proxifier</strong>让Github Desktop单独的跑代理,接着还是觉得速度很慢，只有4Kb。检查后才发现git跑的还是本地的网络，接下来就是配置下git</p>
+<h3 id="2-配置git代理mac">2. 配置git代理(Mac)</h3>
+<ul>
+<li>代理工具:shadowsocksX为例子<br>
+顶部任务栏找到小飞机标志-&gt;高级设置-&gt;查看本地Socks5端口<br>
+<img src="https://gitee.com/me_22k/oss/raw/master/uPic/zDswyn.png" alt="zDswyn" loading="lazy"></li>
+</ul>
+<pre><code class="language-shell"># 代理里边的1080请根据你自身的端口进行修改(socks5协议)
+git config --global https.proxy socks5://127.0.0.1:1080
+git config --global http.proxy socks5://127.0.0.1:1080
+</code></pre>
+<p>或者仅对github走代理</p>
+<pre><code class="language-shell"># 1080端口修改成自己的代理端口(socks5协议)
+git config --global http.https://github.com.proxy socks5://127.0.0.1:1080
+git config --global https.https://github.com.proxy socks5://127.0.0.1:1080
+</code></pre>
+<h3 id="3检查是否完成">3.检查是否完成</h3>
+<pre><code class="language-shell">#查看当前配置信息(全局)
+git config --global --list
+</code></pre>
+<p><img src="https://gitee.com/me_22k/oss/raw/master/uPic/QiO8LR.png" alt="QiO8LR" loading="lazy"><br>
+配置成功！<br>
+<strong>到这里已经是配置成功了，可以进行测试看看效果了。下面是一些补充的信息！！！</strong></p>
+<h3 id="4编写配置信息">4.编写配置信息</h3>
+<pre><code class="language-shell">git config --global --edit
+</code></pre>
+<p><img src="https://gitee.com/me_22k/oss/raw/master/uPic/IsyqFZ.png" alt="IsyqFZ" loading="lazy"><br>
+然后就是输入i进去自己修改相关信息了</p>
+<h3 id="5取消代理">5.取消代理</h3>
+<pre><code class="language-shell"># 取消全局代理
+git  config --global --unset http.proxy #取消http代理
+git  config --global --unset https.proxy #取消https代理
+# 取消github代理
+git config --global --unset http.https://github.com.proxy #取消http代理
+git config --global --unset https.https://github.com.proxy #取消https代理
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[如何免会员实现百度云倍速播放？]]></title>
         <id>https://8430177.github.io/post/ru-he-mian-hui-yuan-shi-xian-bai-du-yun-bei-su-bo-fang/</id>
