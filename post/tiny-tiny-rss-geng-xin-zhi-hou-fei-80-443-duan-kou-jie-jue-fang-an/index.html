@@ -2,7 +2,7 @@
   <head>
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>github | 22k&#39;s Blog</title>
+<title>Tiny Tiny RSS更新之后非80 443端口解决方案 | 22k&#39;s Blog</title>
 <meta name="description" content="To be better man" />
 <link rel="shortcut icon" href="https://8430177.github.io/favicon.ico">
 <link rel="stylesheet" href="https://8430177.github.io/styles/main.css">
@@ -13,11 +13,13 @@
 <script src="https://8430177.github.io/media/js/pace.min.js"></script>
 <script src="https://8430177.github.io/media/js/view-image.min.js"></script>
 <script src="https://8430177.github.io/media/js/functions.js"></script>
+    <script src="https://8430177.github.io/media/js/waterfall.min.js"></script>
+    <script src="https://8430177.github.io/media/js/prism.min.js"></script>
+    
+      <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/leancloud-storage/dist/av-min.js"></script>
+    
   </head>
   <body>
-    <!-- start: #wrapper -->
-    <div class="wrapper">
-      
             <header id="header" class="grid-container">
         <!-- start: .menu-wrapper -->
         <div class="menu-mobile"> 
@@ -66,58 +68,143 @@
         <div class="clear"></div>
       </header>
 
-      <main id="home" class="main fullcover no-sidebar content">
-        <div class="grid-container module-wrapper enable-masonry aos-init aos-animate" data-aos="fade-up">
-        <div class="epcl-page-wrapper">
-          <div class="left-content grid-70 np-mobile widget_epcl_related_articles">
-                
-            <!-- start: .articles -->
-            <div class="main-article post">
-  <h2 class="year"># github</h2>
-    
-      <article class="item default grid-33 tablet-grid-50 np-mobile">
-        <a href="https://8430177.github.io/post/wei-git-pei-zhi-dai-li-jia-su-git-clone-su-du/" class="thumb hover-effect">
-          <span class="fullimage cover" style="display: block;background-image: url('https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=2979932033,2285584200&amp;fm=26&amp;gp=0.jpg');"></span>
-        </a>
-        <div class="info gradient-effect">
-          <time datetime="2020-03-10">2020-03-10</time>
-          <h4 class="title usmall">
-            <a href="https://8430177.github.io/post/wei-git-pei-zhi-dai-li-jia-su-git-clone-su-du/">为git配置代理，加速git clone速度(Mac)</a>
-          </h4>
-        </div>
-      </article>
+      <main id="single" class="main grid-container fullcover no-sidebar aos-init aos-animate" data-aos="fade">
 
-    
-      <article class="item default grid-33 tablet-grid-50 np-mobile">
-        <a href="https://8430177.github.io/post/guo-nei-jia-su-github-fang-wen-su-du/" class="thumb hover-effect">
-          <span class="fullimage cover" style="display: block;background-image: url('https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1581956564712&amp;di=04fc20b8d42b87822ab6b21847a6bf02&amp;imgtype=0&amp;src=http%3A%2F%2Fpic4.zhimg.com%2Fv2-24b62548b48af3e019a3c82df54758a8_r.jpg');"></span>
-        </a>
-        <div class="info gradient-effect">
-          <time datetime="2020-02-17">2020-02-17</time>
-          <h4 class="title usmall">
-            <a href="https://8430177.github.io/post/guo-nei-jia-su-github-fang-wen-su-du/">国内加速github访问速度</a>
-          </h4>
-        </div>
-      </article>
-
-    
-    <div class="clear"></div>
-</div>
-            <!-- end: .articles -->
-            
-                        <div class="epcl-pagination section">
-              <div class="nav">
-                
+        <div class="center content">
+          <div class="featured-image cover" style="background-image: url('https://8430177.github.io/media/images/gridea.jpg');">
+            <div class="meta top"> 
+              <time class="meta-info" style="float:left;" datetime="2020-10-05"><i class="fa fa-calendar"></i><span class="lately">33 分钟前</span></time>
+               
+               
+               <span id="/post/tiny-tiny-rss-geng-xin-zhi-hou-fei-80-443-duan-kou-jie-jue-fang-an/" class="leancloud_visitors views-counter meta-info">
+                <i class="fa fa-leancloud"></i><span class="leancloud-visitors-count" style="vertical-align: middle;">0</span>
+               </span>
+               
+            </div>
+            <div class="info">
+              <div class="tags ">
                 
               </div>
+              <h1 class="title ularge white bold">Tiny Tiny RSS更新之后非80 443端口解决方案</h1>
             </div>
-            
           </div>
+        </div>  
+
+        <div class="epcl-page-wrapper">
+          <div class="left-content grid-70 np-mobile">
+            <article class="main-article post">
+              <section class="post-content">
+                <div class="text">
+                  <h3 id="前记">前记:</h3>
+<p>一直使用着docker版本的<a href="https://github.com/HenryQW/Awesome-TTRSS">Tiny Tiny RSS</a>，并且搭配着RSSHub这个制作订阅源。<br>
+然后突然发现TTRSS更新了，之前的订阅非80、443端口的RSS地址都失效了。</p>
+<h4 id="1查找问题">1.查找问题</h4>
+<p>首先发现只有这个RSSHub订阅的失效，并且是更新了版本后失效。接着就群里讨论。<br>
+上Github发现已经有人提了<a href="https://github.com/HenryQW/Awesome-TTRSS/issues/184">Issues</a></p>
+<h4 id="2解决方案">2.解决方案</h4>
+<p>既然需要采用80或443端口，那么很容易的可以用nginx中的location作处理。<br>
+思路:<br>
+example.com ===&gt; 正常范访问Tiny Tiny RSS后台<br>
+www.example.com ===&gt; 访问RSSHub进行订阅</p>
+<blockquote>
+<p>代码示例:</p>
+</blockquote>
+<pre><code class="language-xml">#配置正常访问Tiny Tiny RSS后台
+server {
+    listen 80;
+    server_name example.monster;
+      return 301 https://example.com$request_uri;
+}
+#配置正常访问RssHub后台（反向代理）
+server {
+    listen 80;
+    server_name www.example.com;
+    location / { 
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forward-For $proxy_add_x_forwarded_for;
+    proxy_set_header Host $http_host;
+    proxy_set_header X-Nginx-Proxy true;
+    #这里为RSSHub服务器端口
+    proxy_pass http://127.0.0.1:1200/;
+    proxy_redirect off;
+    }
+}
+</code></pre>
+<p>可以看到已经可以正常获取RSS信息了<br>
+<img src="https://raw.githubusercontent.com/8430177/imgHub/master/uPic/6L8Ceb.png" alt="6L8Ceb" loading="lazy"></p>
+
+                </div>
+                <div class="clear"></div>
+              </section>
+            </article>
+            <div class="clear"></div>
+
+            <section class="related section">
+              
+              
+              <article class="next grid-50 tablet-grid-50 grid-parent">
+                <div class="thumb cover lazy loaded" style="background-image: url('https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=2979932033,2285584200&amp;fm=26&amp;gp=0.jpg');"></div>
+                 <a href="https://8430177.github.io/post/wei-git-pei-zhi-dai-li-jia-su-git-clone-su-du/" class="full-link"></a>
+                 <div class="info">
+                  <time datetime="2020-03-10">2020-03-10</time>
+                  <h4 class="title white no-margin">为git配置代理，加速git clone速度(Mac)</h4>
+                </div>
+                 <span class="epcl-button red">
+                  <img src="https://8430177.github.io/media/images/right-arrow.svg" width="15" alt="Left Arrow">
+                </span>
+                <div class="overlay"></div>
+              </article>
+              
+
+                <div class="clear"></div>
+            </section>
+
+              <div class="clear"></div>
+
+              <div id="comments" class="bg-white hosted ">
+
+              
+                <script type="text/javascript" src="https://cdn.staticfile.org/valine/1.3.10/Valine.Pure.min.js"></script>
+
+<script>
+    var valine = new Valine();
+    valine.init({
+        el: '#comments',
+        appId: 'BcBc1ivdTITKJdIs9e69DEiu-gzGzoHsz' ,
+        appKey: 'maOAepU1AqVqceXsisu73OBH',
+        pageSize: 30,
+        placeholder: '既然来了，那就留个痕迹吧~',
+        visitor: false // 阅读量统计
+    })
+
+jQuery(document).ready(function($){
+    $('.vemoji-btn').text('😀');
+    $("#comments").on('click', 'span.vat',function(){
+        $(this).parent('div.vmeta').next("div.vcontent").after($("div.vwrap"));
+        $('textarea#veditor').focus();
+    })
+    if(window.location.hash){
+        var checkExist = setInterval(function() {
+            if ($(window.location.hash).length) {
+                $('html, body').animate({scrollTop: $(window.location.hash).offset().top-200}, 600);
+                clearInterval(checkExist);
+            }
+        }, 100);
+    }
+})
+</script>
+
+                <div class="clear"></div>
+              
+                <div class="clear"></div>
+              </div>
+
+              <div class="clear"></div>
+            </div>
           </div>
-        </div>
       </main>
 
-        <footer id="footer" class="grid-container">
+          <footer id="footer" class="grid-container">
         <div class="widgets row gradient-effect">
             <div class="default-sidebar border-effect">
               <div class="grid-33 tablet-grid-50 mobile-grid-100">
@@ -257,6 +344,50 @@
         
     </footer>
     <div class="clear"></div>
+
+      <script type="text/javascript">
+       jQuery(document).ready(function($){
+          $("photos img").each(function(){
+              var _a = $("<a></a>").attr("href",this.src);
+              $(this).wrap("<div class='photo'></div>").wrap(_a);
+          })
+          $("figure img").each(function(){
+              var _b = $("<a></a>").attr("href",this.src);
+              $(this).wrap(_b);
+          })
+          isImgLoad(function(){
+            var photos = document.querySelector('photos');
+            if(photos){
+              waterfall(photos);
+            }
+            $(window).resize(function() {
+             if(photos){
+                  waterfall(photos);
+            }
+          });
+        });
+        var t_img;
+        var isLoad = true;
+        function isImgLoad(callback){
+          $('photos img').each(function(){
+            if(this.height === 0){
+              isLoad = false;
+              return false;
+            }
+          });
+          if(isLoad){
+            clearTimeout(t_img);
+            callback();
+          }else{
+            isLoad = true;
+            t_img = setTimeout(function(){
+              isImgLoad(callback);
+            },500);
+          }
+        }
+      });
+      </script>
+
     </div>
     <!-- end: #wrapper -->
   </body>

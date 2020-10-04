@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://8430177.github.io</id>
     <title>22k&apos;s Blog</title>
-    <updated>2020-03-10T06:56:41.956Z</updated>
+    <updated>2020-10-04T17:40:20.252Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://8430177.github.io"/>
     <link rel="self" href="https://8430177.github.io/atom.xml"/>
@@ -10,6 +10,51 @@
     <logo>https://8430177.github.io/images/avatar.png</logo>
     <icon>https://8430177.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, 22k&apos;s Blog</rights>
+    <entry>
+        <title type="html"><![CDATA[Tiny Tiny RSS更新之后非80 443端口解决方案]]></title>
+        <id>https://8430177.github.io/post/tiny-tiny-rss-geng-xin-zhi-hou-fei-80-443-duan-kou-jie-jue-fang-an/</id>
+        <link href="https://8430177.github.io/post/tiny-tiny-rss-geng-xin-zhi-hou-fei-80-443-duan-kou-jie-jue-fang-an/">
+        </link>
+        <updated>2020-10-04T17:07:37.000Z</updated>
+        <content type="html"><![CDATA[<h3 id="前记">前记:</h3>
+<p>一直使用着docker版本的<a href="https://github.com/HenryQW/Awesome-TTRSS">Tiny Tiny RSS</a>，并且搭配着RSSHub这个制作订阅源。<br>
+然后突然发现TTRSS更新了，之前的订阅非80、443端口的RSS地址都失效了。</p>
+<h4 id="1查找问题">1.查找问题</h4>
+<p>首先发现只有这个RSSHub订阅的失效，并且是更新了版本后失效。接着就群里讨论。<br>
+上Github发现已经有人提了<a href="https://github.com/HenryQW/Awesome-TTRSS/issues/184">Issues</a></p>
+<h4 id="2解决方案">2.解决方案</h4>
+<p>既然需要采用80或443端口，那么很容易的可以用nginx中的location作处理。<br>
+思路:<br>
+example.com ===&gt; 正常范访问Tiny Tiny RSS后台<br>
+www.example.com ===&gt; 访问RSSHub进行订阅</p>
+<blockquote>
+<p>代码示例:</p>
+</blockquote>
+<pre><code class="language-xml">#配置正常访问Tiny Tiny RSS后台
+server {
+    listen 80;
+    server_name example.monster;
+      return 301 https://example.com$request_uri;
+}
+#配置正常访问RssHub后台（反向代理）
+server {
+    listen 80;
+    server_name www.example.com;
+    location / { 
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forward-For $proxy_add_x_forwarded_for;
+    proxy_set_header Host $http_host;
+    proxy_set_header X-Nginx-Proxy true;
+    #这里为RSSHub服务器端口
+    proxy_pass http://127.0.0.1:1200/;
+    proxy_redirect off;
+    }
+}
+</code></pre>
+<p>可以看到已经可以正常获取RSS信息了<br>
+<img src="https://raw.githubusercontent.com/8430177/imgHub/master/uPic/6L8Ceb.png" alt="6L8Ceb" loading="lazy"></p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[为git配置代理，加速git clone速度(Mac)]]></title>
         <id>https://8430177.github.io/post/wei-git-pei-zhi-dai-li-jia-su-git-clone-su-du/</id>
