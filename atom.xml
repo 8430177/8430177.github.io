@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://8430177.github.io</id>
     <title>22k&apos;s Blog</title>
-    <updated>2020-10-04T17:40:20.252Z</updated>
+    <updated>2020-10-04T17:42:37.054Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://8430177.github.io"/>
     <link rel="self" href="https://8430177.github.io/atom.xml"/>
@@ -33,7 +33,7 @@ www.example.com ===&gt; 访问RSSHub进行订阅</p>
 <pre><code class="language-xml">#配置正常访问Tiny Tiny RSS后台
 server {
     listen 80;
-    server_name example.monster;
+    server_name example.com;
       return 301 https://example.com$request_uri;
 }
 #配置正常访问RssHub后台（反向代理）
