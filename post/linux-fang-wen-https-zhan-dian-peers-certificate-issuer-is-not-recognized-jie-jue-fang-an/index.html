@@ -2,7 +2,7 @@
   <head>
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Kali_Linux | 22k&#39;s Blog</title>
+<title>Linux访问Https站点Peer’s Certificate issuer is not recognized解决方案 | 22k&#39;s Blog</title>
 <meta name="description" content="To be better man" />
 <link rel="shortcut icon" href="https://8430177.github.io/favicon.ico">
 <link rel="stylesheet" href="https://8430177.github.io/styles/main.css">
@@ -13,11 +13,13 @@
 <script src="https://8430177.github.io/media/js/pace.min.js"></script>
 <script src="https://8430177.github.io/media/js/view-image.min.js"></script>
 <script src="https://8430177.github.io/media/js/functions.js"></script>
+    <script src="https://8430177.github.io/media/js/waterfall.min.js"></script>
+    <script src="https://8430177.github.io/media/js/prism.min.js"></script>
+    
+      <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/leancloud-storage/dist/av-min.js"></script>
+    
   </head>
   <body>
-    <!-- start: #wrapper -->
-    <div class="wrapper">
-      
             <header id="header" class="grid-container">
         <!-- start: .menu-wrapper -->
         <div class="menu-mobile"> 
@@ -66,45 +68,148 @@
         <div class="clear"></div>
       </header>
 
-      <main id="home" class="main fullcover no-sidebar content">
-        <div class="grid-container module-wrapper enable-masonry aos-init aos-animate" data-aos="fade-up">
-        <div class="epcl-page-wrapper">
-          <div class="left-content grid-70 np-mobile widget_epcl_related_articles">
-                
-            <!-- start: .articles -->
-            <div class="main-article post">
-  <h2 class="year"># Kali_Linux</h2>
-    
-      <article class="item default grid-33 tablet-grid-50 np-mobile">
-        <a href="https://8430177.github.io/post/kali-linux-geng-huan-yuan-ji-geng-xin-ruan-jian-xi-tong/" class="thumb hover-effect">
-          <span class="fullimage cover" style="display: block;background-image: url('https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1581942348693&amp;di=6a9f7061035dd839185ac2ab6e640d5e&amp;imgtype=0&amp;src=http%3A%2F%2F5b0988e595225.cdn.sohucs.com%2Fimages%2F20181202%2F69a8d2ebc4724bdcab4483415d066c15.jpeg');"></span>
-        </a>
-        <div class="info gradient-effect">
-          <time datetime="2020-02-17">2020-02-17</time>
-          <h4 class="title usmall">
-            <a href="https://8430177.github.io/post/kali-linux-geng-huan-yuan-ji-geng-xin-ruan-jian-xi-tong/">Kali Linux更换源及更新软件、系统</a>
-          </h4>
-        </div>
-      </article>
+      <main id="single" class="main grid-container fullcover no-sidebar aos-init aos-animate" data-aos="fade">
 
-    
-    <div class="clear"></div>
-</div>
-            <!-- end: .articles -->
-            
-                        <div class="epcl-pagination section">
-              <div class="nav">
-                
-                
-              </div>
+        <div class="center content">
+          <div class="featured-image cover" style="background-image: url('data:image/png;base64,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');">
+            <div class="meta top"> 
+              <time class="meta-info" style="float:left;" datetime="2020-10-05"><i class="fa fa-calendar"></i><span class="lately">14 分钟前</span></time>
+               
+               
+               <span id="/post/linux-fang-wen-https-zhan-dian-peers-certificate-issuer-is-not-recognized-jie-jue-fang-an/" class="leancloud_visitors views-counter meta-info">
+                <i class="fa fa-leancloud"></i><span class="leancloud-visitors-count" style="vertical-align: middle;">0</span>
+               </span>
+               
             </div>
-            
+            <div class="info">
+              <div class="tags ">
+                
+                      <a href="https://8430177.github.io/tag/jIKvSsl5F/" class="ctag ctag-0 ctag-jIKvSsl5F" aria-label="">Linux</a>
+                    
+              </div>
+              <h1 class="title ularge white bold">Linux访问Https站点Peer’s Certificate issuer is not recognized解决方案</h1>
+            </div>
           </div>
+        </div>  
+
+        <div class="epcl-page-wrapper">
+          <div class="left-content grid-70 np-mobile">
+            <article class="main-article post">
+              <section class="post-content">
+                <div class="text">
+                  <ol>
+<li>问题</li>
+</ol>
+<p>今天发现又有一个RSS订阅站点出错。浏览器访问正常显示订阅源，接着登陆服务器curl网站发现报错。</p>
+<pre><code class="language-bash">curl: (60) Peer's Certificate issuer is not recognized.
+More details here: http://curl.haxx.se/docs/sslcerts.html
+
+curl performs SSL certificate verification by default, using a &quot;bundle&quot;
+ of Certificate Authority (CA) public keys (CA certs). If the default
+ bundle file isn't adequate, you can specify an alternate file
+ using the --cacert option.
+If this HTTPS server uses a certificate signed by a CA represented in
+ the bundle, the certificate verification probably failed due to a
+ problem with the certificate (it might be expired, or the name might
+ not match the domain name in the URL).
+If you'd like to turn off curl's verification of the certificate, use
+ the -k (or --insecure) option.
+</code></pre>
+<ol start="2">
+<li>解决方案<br>
+将目标网站的crt下载下来。转换为pem并且追加进/etc/pki/tls/certs/ca-bundle.crt（Centos）<br>
+实例:</li>
+</ol>
+<ul>
+<li>找到网站所在的证书<br>
+<img src="https://raw.githubusercontent.com/8430177/imgHub/master/uPic/wzy6fD.png" alt="wzy6fD" loading="lazy"><br>
+<img src="https://raw.githubusercontent.com/8430177/imgHub/master/uPic/tmWFq0.png" alt="tmWFq0" loading="lazy"></li>
+<li>复制证书地址--&gt;服务器终端：curl -O  example.crt(证书地址)</li>
+</ul>
+<pre><code class="language-bash">cd /etc/pki/tls/certs/ca-bundle.crt
+curl curl -O  example.crt(证书地址)
+#将crt转换为pem（example.crt为下载下来的证书文件，自行替换）
+openssl x509 -in example.crt -inform der -outform pem -out temp.pem
+#将内容追加进去ca-bundle.crt文件
+cat temp.pem &gt;&gt; /etc/pki/tls/certs/ca-bundle.crt
+</code></pre>
+<ol start="3">
+<li>测试<br>
+在这里已经可以正常访问了!!!</li>
+</ol>
+
+                </div>
+                <div class="clear"></div>
+              </section>
+            </article>
+            <div class="clear"></div>
+
+            <section class="related section">
+              
+              
+              <article class="next grid-50 tablet-grid-50 grid-parent">
+                <div class="thumb cover lazy loaded" style="background-image: url('https://8430177.github.io/media/images/gridea.jpg');"></div>
+                 <a href="https://8430177.github.io/post/tiny-tiny-rss-geng-xin-zhi-hou-fei-80-443-duan-kou-jie-jue-fang-an/" class="full-link"></a>
+                 <div class="info">
+                  <time datetime="2020-10-05">2020-10-05</time>
+                  <h4 class="title white no-margin">Tiny Tiny RSS更新之后非80 443端口解决方案</h4>
+                </div>
+                 <span class="epcl-button red">
+                  <img src="https://8430177.github.io/media/images/right-arrow.svg" width="15" alt="Left Arrow">
+                </span>
+                <div class="overlay"></div>
+              </article>
+              
+
+                <div class="clear"></div>
+            </section>
+
+              <div class="clear"></div>
+
+              <div id="comments" class="bg-white hosted ">
+
+              
+                <script type="text/javascript" src="https://cdn.staticfile.org/valine/1.3.10/Valine.Pure.min.js"></script>
+
+<script>
+    var valine = new Valine();
+    valine.init({
+        el: '#comments',
+        appId: 'BcBc1ivdTITKJdIs9e69DEiu-gzGzoHsz' ,
+        appKey: 'maOAepU1AqVqceXsisu73OBH',
+        pageSize: 30,
+        placeholder: '既然来了，那就留个痕迹吧~',
+        visitor: false // 阅读量统计
+    })
+
+jQuery(document).ready(function($){
+    $('.vemoji-btn').text('😀');
+    $("#comments").on('click', 'span.vat',function(){
+        $(this).parent('div.vmeta').next("div.vcontent").after($("div.vwrap"));
+        $('textarea#veditor').focus();
+    })
+    if(window.location.hash){
+        var checkExist = setInterval(function() {
+            if ($(window.location.hash).length) {
+                $('html, body').animate({scrollTop: $(window.location.hash).offset().top-200}, 600);
+                clearInterval(checkExist);
+            }
+        }, 100);
+    }
+})
+</script>
+
+                <div class="clear"></div>
+              
+                <div class="clear"></div>
+              </div>
+
+              <div class="clear"></div>
+            </div>
           </div>
-        </div>
       </main>
 
-        <footer id="footer" class="grid-container">
+          <footer id="footer" class="grid-container">
         <div class="widgets row gradient-effect">
             <div class="default-sidebar border-effect">
               <div class="grid-33 tablet-grid-50 mobile-grid-100">
@@ -248,6 +353,50 @@
         
     </footer>
     <div class="clear"></div>
+
+      <script type="text/javascript">
+       jQuery(document).ready(function($){
+          $("photos img").each(function(){
+              var _a = $("<a></a>").attr("href",this.src);
+              $(this).wrap("<div class='photo'></div>").wrap(_a);
+          })
+          $("figure img").each(function(){
+              var _b = $("<a></a>").attr("href",this.src);
+              $(this).wrap(_b);
+          })
+          isImgLoad(function(){
+            var photos = document.querySelector('photos');
+            if(photos){
+              waterfall(photos);
+            }
+            $(window).resize(function() {
+             if(photos){
+                  waterfall(photos);
+            }
+          });
+        });
+        var t_img;
+        var isLoad = true;
+        function isImgLoad(callback){
+          $('photos img').each(function(){
+            if(this.height === 0){
+              isLoad = false;
+              return false;
+            }
+          });
+          if(isLoad){
+            clearTimeout(t_img);
+            callback();
+          }else{
+            isLoad = true;
+            t_img = setTimeout(function(){
+              isImgLoad(callback);
+            },500);
+          }
+        }
+      });
+      </script>
+
     </div>
     <!-- end: #wrapper -->
   </body>

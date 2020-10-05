@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://8430177.github.io</id>
     <title>22k&apos;s Blog</title>
-    <updated>2020-10-04T17:42:37.054Z</updated>
+    <updated>2020-10-05T02:34:02.747Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://8430177.github.io"/>
     <link rel="self" href="https://8430177.github.io/atom.xml"/>
@@ -10,6 +10,54 @@
     <logo>https://8430177.github.io/images/avatar.png</logo>
     <icon>https://8430177.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, 22k&apos;s Blog</rights>
+    <entry>
+        <title type="html"><![CDATA[Linux访问Https站点Peer’s Certificate issuer is not recognized解决方案]]></title>
+        <id>https://8430177.github.io/post/linux-fang-wen-https-zhan-dian-peers-certificate-issuer-is-not-recognized-jie-jue-fang-an/</id>
+        <link href="https://8430177.github.io/post/linux-fang-wen-https-zhan-dian-peers-certificate-issuer-is-not-recognized-jie-jue-fang-an/">
+        </link>
+        <updated>2020-10-05T02:19:33.000Z</updated>
+        <content type="html"><![CDATA[<ol>
+<li>问题</li>
+</ol>
+<p>今天发现又有一个RSS订阅站点出错。浏览器访问正常显示订阅源，接着登陆服务器curl网站发现报错。</p>
+<pre><code class="language-bash">curl: (60) Peer's Certificate issuer is not recognized.
+More details here: http://curl.haxx.se/docs/sslcerts.html
+
+curl performs SSL certificate verification by default, using a &quot;bundle&quot;
+ of Certificate Authority (CA) public keys (CA certs). If the default
+ bundle file isn't adequate, you can specify an alternate file
+ using the --cacert option.
+If this HTTPS server uses a certificate signed by a CA represented in
+ the bundle, the certificate verification probably failed due to a
+ problem with the certificate (it might be expired, or the name might
+ not match the domain name in the URL).
+If you'd like to turn off curl's verification of the certificate, use
+ the -k (or --insecure) option.
+</code></pre>
+<ol start="2">
+<li>解决方案<br>
+将目标网站的crt下载下来。转换为pem并且追加进/etc/pki/tls/certs/ca-bundle.crt（Centos）<br>
+实例:</li>
+</ol>
+<ul>
+<li>找到网站所在的证书<br>
+<img src="https://raw.githubusercontent.com/8430177/imgHub/master/uPic/wzy6fD.png" alt="wzy6fD" loading="lazy"><br>
+<img src="https://raw.githubusercontent.com/8430177/imgHub/master/uPic/tmWFq0.png" alt="tmWFq0" loading="lazy"></li>
+<li>复制证书地址--&gt;服务器终端：curl -O  example.crt(证书地址)</li>
+</ul>
+<pre><code class="language-bash">cd /etc/pki/tls/certs/ca-bundle.crt
+curl curl -O  example.crt(证书地址)
+#将crt转换为pem（example.crt为下载下来的证书文件，自行替换）
+openssl x509 -in example.crt -inform der -outform pem -out temp.pem
+#将内容追加进去ca-bundle.crt文件
+cat temp.pem &gt;&gt; /etc/pki/tls/certs/ca-bundle.crt
+</code></pre>
+<ol start="3">
+<li>测试<br>
+在这里已经可以正常访问了!!!</li>
+</ol>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Tiny Tiny RSS更新之后非80 443端口解决方案]]></title>
         <id>https://8430177.github.io/post/tiny-tiny-rss-geng-xin-zhi-hou-fei-80-443-duan-kou-jie-jue-fang-an/</id>
