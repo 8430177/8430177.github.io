@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://8430177.github.io</id>
     <title>22k&apos;s Blog</title>
-    <updated>2020-10-05T02:34:02.747Z</updated>
+    <updated>2020-10-11T01:53:23.133Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://8430177.github.io"/>
     <link rel="self" href="https://8430177.github.io/atom.xml"/>
@@ -10,6 +10,72 @@
     <logo>https://8430177.github.io/images/avatar.png</logo>
     <icon>https://8430177.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, 22k&apos;s Blog</rights>
+    <entry>
+        <title type="html"><![CDATA[将RSS源翻译成指定语言后返回]]></title>
+        <id>https://8430177.github.io/post/jiang-rss-yuan-fan-yi-cheng-zhi-ding-yu-yan-hou-fan-hui/</id>
+        <link href="https://8430177.github.io/post/jiang-rss-yuan-fan-yi-cheng-zhi-ding-yu-yan-hou-fan-hui/">
+        </link>
+        <updated>2020-10-11T01:31:33.000Z</updated>
+        <content type="html"><![CDATA[<h4 id="1-起因">1. 起因</h4>
+<p>起初订阅的RSS源都是英文站点，英文站点看文章标题还是有点墨水的。所以并没有使用到翻译。<br>
+但是随着订阅源增多，慢慢地有俄罗斯、西班牙等语言。<br>
+这个就很头疼了，看都看不懂，接着就有了想将RSS源进行翻译。</p>
+<h4 id="2-思路">2. 思路</h4>
+<p>项目基于RSSHub进行拓展：<br>
+所需的npm包:</p>
+<ul>
+<li><a href="https://www.npmjs.com/package/rss-parser">rss-parser</a></li>
+<li><a href="https://github.com/wilsonwu/translation-google">translation-google</a></li>
+</ul>
+<ol>
+<li>安装npm包</li>
+</ol>
+<pre><code class="language-bash">#安装解析RSS包
+npm install --save rss-parser
+#安装谷歌翻译API
+npm install translation-google
+</code></pre>
+<ol start="2">
+<li>实现</li>
+</ol>
+<blockquote>
+<p>因为一个RSS源有需要item，所以我是获取了所有item中的title并且存进数组。进行全部翻译。<br>
+翻译完成之后才拆分出来，防止google翻译API请求太频繁！！！</p>
+</blockquote>
+<pre><code class="language-js">const Parser = require('rss-parser');
+const translate = require('translation-google');
+//在国内需要加这个前缀
+translate.suffix = 'cn';
+module.exports = async (ctx) =&gt; {
+    const parser = new Parser();
+    //rss订阅地址
+    const baseUrl = 'https://example.com/rss';
+    const feed = await parser.parseURL(baseUrl);
+    //临时的item
+    const tempItem = [];
+    feed.items.forEach((item) =&gt; {
+        tempItem.push(item.title);
+    });
+    await translate(tempItem.join(&quot;\n&quot;)
+        , { to:'zh-cn'}).then((res) =&gt; {
+        const itemTitles = res.text.split(&quot;\n&quot;);
+        feed.items.forEach((item, index) =&gt; {
+            feed.items[index].title =  itemTitles[index];
+        });
+    }).catch((err) =&gt; {
+        console.log(err);
+    });
+    ctx.state.data = {
+        title: `title ~ 资讯`,
+        link: `www.example.com/`,
+        description: 'title ~ 资讯',
+        item: feed.items,
+    };
+};
+</code></pre>
+<p>上面的是自动检测语言并且翻译成中文，如果需要翻译成其他语言。可以自行查看<a href="https://github.com/wilsonwu/translation-google">文档</a></p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Linux访问Https站点Peer’s Certificate issuer is not recognized解决方案]]></title>
         <id>https://8430177.github.io/post/linux-fang-wen-https-zhan-dian-peers-certificate-issuer-is-not-recognized-jie-jue-fang-an/</id>
