@@ -2,14 +2,70 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://8430177.github.io</id>
     <title>22k&apos;s Blog</title>
-    <updated>2020-10-11T01:53:23.133Z</updated>
+    <updated>2021-02-06T15:45:45.120Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://8430177.github.io"/>
     <link rel="self" href="https://8430177.github.io/atom.xml"/>
     <subtitle>To be better man</subtitle>
     <logo>https://8430177.github.io/images/avatar.png</logo>
     <icon>https://8430177.github.io/favicon.ico</icon>
-    <rights>All rights reserved 2020, 22k&apos;s Blog</rights>
+    <rights>All rights reserved 2021, 22k&apos;s Blog</rights>
+    <entry>
+        <title type="html"><![CDATA[批量爬取二十次幂数据微信bid]]></title>
+        <id>https://8430177.github.io/post/pi-liang-pa-qu-er-shi-ci-mi-shu-ju-wei-xin-bid/</id>
+        <link href="https://8430177.github.io/post/pi-liang-pa-qu-er-shi-ci-mi-shu-ju-wei-xin-bid/">
+        </link>
+        <updated>2021-02-06T15:25:32.000Z</updated>
+        <content type="html"><![CDATA[<h3 id="1-前提">1. 前提:</h3>
+<p>爬取原因是RSSHub有一个订阅微信公众号的第三方源是二十次幂，但是这个网站需要开通VIP才可以搜索公众号。<br>
+<img src="https://raw.githubusercontent.com/8430177/imgHub/master/uPic/31r8SJ.png" alt="31r8SJ" loading="lazy"><br>
+接着就有想爬下数据然后订阅自己想要的公众号。</p>
+<h3 id="2-准备工作">2. 准备工作</h3>
+<p><img src="https://raw.githubusercontent.com/8430177/imgHub/master/uPic/f0mZmb.png" alt="f0mZmb" loading="lazy"><br>
+首先，看见了有大概500页的数据，接着我们F12看看NetWork栏目中的数据。<br>
+<img src="https://raw.githubusercontent.com/8430177/imgHub/master/uPic/KmTNqQ.png" alt="KmTNqQ" loading="lazy"><br>
+或者直接勾选XHR就可以发现这个是一个Ajax请求<br>
+<img src="https://raw.githubusercontent.com/8430177/imgHub/master/uPic/zEY6cT.png" alt="zEY6cT" loading="lazy"><br>
+接口返回了已经整理好的数据，所以我们不需要二次整理。<br>
+直接编写代码（Java）</p>
+<h3 id="3-编写代码">3. 编写代码</h3>
+<pre><code class="language-java">import cn.hutool.http.HttpRequest;
+import cn.hutool.http.HttpResponse;
+import cn.hutool.json.JSONArray;
+import cn.hutool.json.JSONObject;
+import cn.hutool.json.JSONUtil;
+import org.junit.Test;
+public class test {
+    @Test
+    public void asd() throws InterruptedException {
+        StringBuilder result = new StringBuilder();
+        for (int i = 1; i &lt;= 500; i++) {
+            HttpRequest request = new HttpRequest(&quot;https://www.ershicimi.com/api/search/ad?page=&quot; + i + &quot;&amp;limit=20&quot;);
+            HttpResponse response = request.execute();
+            JSONObject parse = JSONUtil.parseObj(response.body());
+            JSONArray data = parse.getJSONArray(&quot;data&quot;);
+            for (int i1 = 0; i1 &lt; data.size(); i1++) {
+                JSONObject object = data.getJSONObject(i1).getJSONObject(&quot;account&quot;);
+                result.append(object.get(&quot;nickname&quot;)+&quot;----&quot;+object.get(&quot;bid&quot;)+&quot;\n&quot;);
+            }
+            Thread.sleep(1000);
+        }
+        System.out.println(result.toString());
+    }
+}
+</code></pre>
+<blockquote>
+<p>这里引入了Hutool这个工具包，大家需要自行搜索Maven引入</p>
+</blockquote>
+<h3 id="4效果">4.效果</h3>
+<p><img src="https://raw.githubusercontent.com/8430177/imgHub/master/uPic/gRupKD.png" alt="gRupKD" loading="lazy"><br>
+等待执行完成之后，查看效果。成功获取数据</p>
+<h3 id="注意事项">注意事项:</h3>
+<p>接口会限制请求频率，所以我设置了1秒请求一次。这样子不会请求频繁</p>
+<h3 id="结尾">结尾</h3>
+<p>仅供学习参考，不可非法</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[将RSS源翻译成指定语言后返回]]></title>
         <id>https://8430177.github.io/post/jiang-rss-yuan-fan-yi-cheng-zhi-ding-yu-yan-hou-fan-hui/</id>
@@ -426,47 +482,6 @@ deb-src http://http.kali.org/kali kali-rolling main non-free contrib
 </code></pre>
 <h2 id="3-清理">3、清理</h2>
 <pre><code class="language-shell">apt-get clean #清理安装包
-</code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Mac下安装和配置Maven]]></title>
-        <id>https://8430177.github.io/post/mac-xia-an-zhuang-he-pei-zhi-maven/</id>
-        <link href="https://8430177.github.io/post/mac-xia-an-zhuang-he-pei-zhi-maven/">
-        </link>
-        <updated>2020-02-14T12:23:46.000Z</updated>
-        <content type="html"><![CDATA[<h3 id="1-下载maven">1、下载Maven</h3>
-<p>Maven官方下载页面:<a href="http://maven.apache.org/download.cgi">http://maven.apache.org/download.cgi</a></p>
-<p>下载.zip文件到电脑<br>
-<img src="https://8430177.github.io/post-images/1581685982626.png" alt="" loading="lazy"></p>
-<p>解压包到电脑，推荐解压到/Users/xxx/Documents/maven目录下</p>
-<figure data-type="image" tabindex="1"><img src="https://8430177.github.io/post-images/1581685964128.png" alt="" loading="lazy"></figure>
-<h2 id="2-配置环境变量">2、配置环境变量</h2>
-<p>打开终端terminel输入以下命令：</p>
-<p><code>vim ~/.bash_profile #打开.bash_profile文件，在次文件中添加设置环境变量的命令</code></p>
-<p><code>export M2_HOME=/Users/xxx/Documents/maven/apache-maven-3.6.3</code></p>
-<p><code>export PATH=$PATH:$M2_HOME/bin</code></p>
-<p>添加之后保存并退出，执行以下命令使配置生效：</p>
-<p><code>source ~/.bash_profile</code></p>
-<h6 id="检查是否配置正确">检查是否配置正确</h6>
-<p><code>mvn —version</code><br>
-<img src="https://8430177.github.io/post-images/1581685998463.png" alt="" loading="lazy"></p>
-<h2 id="3-配置国内源">3、配置国内源</h2>
-<p>进入解压后的maven文件中的conf/settings.xml文件并编辑</p>
-<ul>
-<li>在 <mirrors></mirrors>中间添加以下内容：</li>
-</ul>
-<pre><code class="language-xml">&lt;mirror&gt;
-    &lt;id&gt;nexus-aliyun&lt;/id&gt;
-    &lt;mirrorOf&gt;*&lt;/mirrorOf&gt;
-    &lt;name&gt;Nexus aliyun&lt;/name&gt;
-    &lt;url&gt;http://maven.aliyun.com/nexus/content/groups/public&lt;/url&gt;
-&lt;/mirror&gt;
-</code></pre>
-<ul>
-<li>修改在settings标签下的<localRepository></li>
-</ul>
-<pre><code class="language-xml">&lt;localRepository&gt;存放的路径&lt;/localRepository&gt;
 </code></pre>
 ]]></content>
     </entry>
